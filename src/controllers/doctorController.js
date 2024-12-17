@@ -41,7 +41,7 @@ exports.getAllDoctors = async (req, res) => {
 // -------------------- GET SINGLE DOCTOR BY ID --------------------
 exports.getDoctorById = async (req, res) => {
   try {
-    const doctor = await Doctor.findById(req.params.id);
+    const doctor = await Doctor.findById(req.params.doctorId);
     if (!doctor) {
       return res.status(404).json({ message: "Doctor not found" });
     }
@@ -57,10 +57,14 @@ exports.getDoctorById = async (req, res) => {
 // -------------------- UPDATE DOCTOR BY ID --------------------
 exports.updateDoctor = async (req, res) => {
   try {
-    const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+    const doctor = await Doctor.findByIdAndUpdate(
+      req.params.doctorId,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
     if (!doctor) {
       return res.status(404).json({ message: "Doctor not found" });
@@ -78,7 +82,7 @@ exports.updateDoctor = async (req, res) => {
 // -------------------- DELETE DOCTOR BY ID --------------------
 exports.deleteDoctor = async (req, res) => {
   try {
-    const doctor = await Doctor.findByIdAndDelete(req.params.id);
+    const doctor = await Doctor.findByIdAndDelete(req.params.doctorId);
     if (!doctor) {
       return res.status(404).json({ message: "Doctor not found" });
     }
