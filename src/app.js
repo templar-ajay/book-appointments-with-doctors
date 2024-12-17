@@ -3,6 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+const doctorRoutes = require("./routes/doctorRoutes");
+
 // Initialize the app
 const app = express();
 
@@ -21,6 +23,9 @@ const connectDB = async () => {
   }
 };
 connectDB();
+
+// Routes
+app.use("/doctors", doctorRoutes);
 
 // Health Check Endpoint
 app.get("/", (req, res) => {
