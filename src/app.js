@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 
 const doctorRoutes = require("./routes/doctorRoutes");
 const slotRoutes = require("./routes/slotRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 // Initialize the app
 const app = express();
@@ -28,6 +29,7 @@ connectDB();
 // Routes
 app.use("/doctors", doctorRoutes);
 app.use("/", slotRoutes);
+app.use("/", bookingRoutes);
 
 // Health Check Endpoint
 app.get("/", (req, res) => {
