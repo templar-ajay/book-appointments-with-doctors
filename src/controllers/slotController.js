@@ -148,13 +148,20 @@ exports.getAvailableSlots = async (req, res) => {
     const { doctorId } = req.params;
     const { date } = req.query;
 
+    const dateFilter = {};
+    if (date) {
+      dateFilter = {
+        start_time: {
+          $gte: new Date(date + "T00:00:00Z"),
+          $lt: new Date(date + "T23:59:59Z"),
+        },
+      };
+    }
+
     const slots = await Slot.find({
       doctor_id: doctorId,
       status: "available",
-      start_time: {
-        $gte: new Date(date + "T00:00:00Z"),
-        $lt: new Date(date + "T23:59:59Z"),
-      },
+      ...dateFilter,
     });
 
     res.status(200).json(slots);

@@ -87,11 +87,9 @@ const getAvailableSlotsSchema = Joi.object({
       }
       return value;
     })
-    .required()
     .messages({
       "date.base": "Date must be a valid date.",
       "date.format": "Date must be in ISO 8601 format.",
-      "any.required": "Date is required.",
     }),
 });
 
