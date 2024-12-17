@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const doctorRoutes = require("./routes/doctorRoutes");
+const slotRoutes = require("./routes/slotRoutes");
 
 // Initialize the app
 const app = express();
@@ -26,6 +27,7 @@ connectDB();
 
 // Routes
 app.use("/doctors", doctorRoutes);
+app.use("/", slotRoutes);
 
 // Health Check Endpoint
 app.get("/", (req, res) => {
