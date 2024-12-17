@@ -42,6 +42,12 @@ This is a **Node.js** and **Express.js**-based system that helps manage doctor a
 
 ## ⚙️ Setup Instructions
 
+### Pre-requisites
+
+1. [NodeJS](https://nodejs.org/en) (preferred version: 22.11.0).
+2. A running [MongoDB](https://www.mongodb.com/) server (local or remote)
+3. [Git](https://git-scm.com/)
+
 ### 1. Clone the Repository
 
 ```bash
@@ -57,7 +63,7 @@ npm install
 
 ### 3. Configure Environment Variables
 
-Rename the `.env.sample` file to `.env` and add your MongoDB connection string and port number:
+copy the `.env.sample` file to `.env` and add your MongoDB connection string and port number:
 
 ```env
 PORT=3000
