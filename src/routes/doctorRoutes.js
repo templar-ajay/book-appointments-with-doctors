@@ -1,10 +1,8 @@
 const express = require("express");
-const Doctor = require("../models/Doctor");
+const doctorController = require("../controllers/doctorController");
 const Joi = require("joi");
 
-const router = express.Router();
-
-// -------------------- Validation Schema --------------------
+// -------------------- Validation Schemas --------------------
 const createDoctorSchema = Joi.object({
   username: Joi.string().min(3).max(30).required(),
   first_name: Joi.string().min(2).max(50).required(),
@@ -41,96 +39,13 @@ const validateUpdateDoctor = (req, res, next) => {
   next();
 };
 
-// -------------------- CREATE DOCTOR --------------------
-router.post("/", validateDoctor, async (req, res) => {
-  try {
-    const existingDoctor = await Doctor.findOne({
-      $or: [{ username: req.body.username }, { email: req.body.email }],
-    });
+// -------------------- ROUTES --------------------
+const router = express.Router();
 
-    if (existingDoctor) {
-      return res
-        .status(409)
-        .json({ message: "Username or email already exists" });
-    }
-
-    const doctor = new Doctor(req.body);
-    await doctor.save();
-
-    res.status(201).json({ message: "Doctor created successfully", doctor });
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
-  }
-});
-
-// -------------------- GET ALL DOCTORS --------------------
-router.get("/", async (req, res) => {
-  try {
-    const doctors = await Doctor.find();
-    res.status(200).json(doctors);
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
-  }
-});
-
-// -------------------- GET SINGLE DOCTOR BY ID --------------------
-router.get("/:id", async (req, res) => {
-  try {
-    const doctor = await Doctor.findById(req.params.id);
-    if (!doctor) {
-      return res.status(404).json({ message: "Doctor not found" });
-    }
-    res.status(200).json(doctor);
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
-  }
-});
-
-// -------------------- UPDATE DOCTOR BY ID --------------------
-router.patch("/:id", validateUpdateDoctor, async (req, res) => {
-  try {
-    const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
-    if (!doctor) {
-      return res.status(404).json({ message: "Doctor not found" });
-    }
-
-    res.status(200).json({ message: "Doctor updated successfully", doctor });
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
-  }
-});
-
-// -------------------- DELETE DOCTOR BY ID --------------------
-router.delete("/:id", async (req, res) => {
-  try {
-    const doctor = await Doctor.findByIdAndDelete(req.params.id);
-    if (!doctor) {
-      return res.status(404).json({ message: "Doctor not found" });
-    }
-
-    res.status(200).json({ message: "Doctor deleted successfully" });
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
-  }
-});
+router.post("/", validateDoctor, doctorController.createDoctor);
+router.get("/", doctorController.getAllDoctors);
+router.get("/:id", doctorController.getDoctorById);
+router.patch("/:id", validateUpdateDoctor, doctorController.updateDoctor);
+router.delete("/:id", doctorController.deleteDoctor);
 
 module.exports = router;
