@@ -150,11 +150,9 @@ exports.getAvailableSlots = async (req, res) => {
 
     const dateFilter = {};
     if (date) {
-      dateFilter = {
-        start_time: {
-          $gte: new Date(date + "T00:00:00Z"),
-          $lt: new Date(date + "T23:59:59Z"),
-        },
+      dateFilter.start_time = {
+        $gte: new Date(date + "T00:00:00Z"),
+        $lt: new Date(date + "T23:59:59Z"),
       };
     }
 
