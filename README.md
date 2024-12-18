@@ -40,7 +40,17 @@ This is a **Node.js** and **Express.js**-based system that helps manage doctor a
 
 ---
 
-## ⚙️ Setup Instructions
+## ![Docker Icon](https://img.icons8.com/?size=24&id=Wln8Z3PcXanx&format=png) Docker Setup Instructions
+
+```bash
+cd book-appointments-with-doctors
+```
+
+```bash
+docker compose up --build
+```
+
+## 🧑🏻‍💻 Local Environment Setup Instructions
 
 ### Pre-requisites
 
