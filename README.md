@@ -1,14 +1,16 @@
-# 🩺 Doctor Appointment System
+# 🩺 Appointment Booking System for Doctors
 
-This is a **Node.js** and **Express.js**-based system that helps manage doctor appointments efficiently, including slot creation and scheduling.
+This is a Appointment Booking system that helps manage doctor appointments efficiently, including slot creation (one-time, and recursively on daily & weekly basis) and Appointment booking.
 
 ---
 
 ## 🧑🏻‍💻 Technologies Used
 
-- **NodeJS & ExpressJS**: create a lightweight backend server.
-- **MongoDB**: as database
-- **Joi**: for robust request validation.
+- **NodeJS & ExpressJS**: to build a lightweight backend server.
+- **NextJS**: to build a fast frontend
+- **MongoDB**: used as database
+- **Joi**: for robust request validation on the server.
+- **NextUI**: for building beautiful UI components
 
 ---
 
@@ -38,16 +40,27 @@ This is a **Node.js** and **Express.js**-based system that helps manage doctor a
 └── README.md            # Project documentation
 ```
 
----
-
-## ![Docker Icon](https://img.icons8.com/?size=24&id=Wln8Z3PcXanx&format=png) Docker Setup Instructions
+## 1. Clone this Repository
 
 ```bash
+git clone https://github.com/templar-ajay/book-appointments-with-doctors.git
 cd book-appointments-with-doctors
 ```
 
+---
+
+## ![Docker Icon](https://img.icons8.com/?size=24&id=Wln8Z3PcXanx&format=png) Docker Instructions to run this project
+
+### 2. Build the project
+
 ```bash
-docker compose up --build
+docker-compose build
+```
+
+### 3. Start the App
+
+```bash
+docker-compose up
 ```
 
 ## 🧑🏻‍💻 Local Environment Setup Instructions
@@ -55,20 +68,14 @@ docker compose up --build
 ### Pre-requisites
 
 1. [NodeJS](https://nodejs.org/en) (preferred version: 22.11.0).
-2. A running [MongoDB](https://www.mongodb.com/) server (local or remote)
+2. An up and running [MongoDB](https://www.mongodb.com/) server (local or remote)
 3. [Git](https://git-scm.com/)
 
-### 1. Clone the Repository
+### 2. Install Backend Dependencies
 
 ```bash
-git clone https://github.com/templar-ajay/book-appointments-with-doctors.git
-cd book-appointments-with-doctors-main
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
+cd backend
+npm i
 ```
 
 ### 3. Configure Environment Variables
@@ -80,7 +87,7 @@ PORT=3000
 MONGODB_URI=<your-mongodb-uri>
 ```
 
-### 4. Start the Application
+### 4. Start the Backend
 
 - **Development Mode** (with nodemon):
 
@@ -96,11 +103,40 @@ npm start
 
 The server will run on `http://localhost:3000`.
 
+### 5. Install Frontend Dependencies
+
+```bash
+cd frontend # if you are in the backend directory use cd ../frontend
+npm i
+```
+
+### 6. Configure Environment Variables
+
+copy the `.env.sample` file to `.env.local` and add your MongoDB connection string and port number:
+
+```env
+BACKEND_URL=http://localhost:3000
+```
+
+### 7. Start the Frontend
+
+- **Development Mode** (with nodemon):
+
+```bash
+npm run dev
+```
+
+- **Production Mode**:
+
+```bash
+npm run build && npm start
+```
+
 ---
 
-## 📦 Dependencies
+## 📦 Backend Dependencies
 
-The following packages are used in this project:
+The following packages are used in this project's backend:
 
 | Package     | Version  | Description                     |
 | ----------- | -------- | ------------------------------- |
@@ -109,6 +145,15 @@ The following packages are used in this project:
 | dotenv      | ^16.4.7  | Environment variable management |
 | joi         | ^17.13.3 | Data validation                 |
 | body-parser | ^1.20.3  | Middleware for request parsing  |
+
+## 📦 Frontend Dependencies
+
+The following packages are used in this project's frontend:
+
+| Package           | Version | Description                           |
+| ----------------- | ------- | ------------------------------------- |
+| next              | ^15.0.4 | A fast and Full Stack React Framework |
+| @nextui-org/react | ^2.2.3  | UI components library for Next.js     |
 
 ---
 
