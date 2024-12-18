@@ -1,10 +1,9 @@
 
 FROM mhart/alpine-node:latest
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/backend/
 
-COPY package*.json ./
-
+COPY ./package*.json ./
 
 RUN npm i
 

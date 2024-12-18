@@ -1,8 +1,10 @@
 version: "3.8"
 
 services:
-  app:
-    build: .
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
@@ -11,8 +13,22 @@ services:
     depends_on:
       - mongo
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./backend:/usr/src/app/backend
+      - /usr/src/app/backend/node_modules
+
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3001:4000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/src/app/frontend
+      - /usr/src/app/frontend/node_modules
 
   mongo:
     image: mongo:latest
