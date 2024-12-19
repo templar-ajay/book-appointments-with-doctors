@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@nextui-org/button": "2.2.3",
     "@nextui-org/code": "2.2.3",
     "@nextui-org/input": "2.4.3",
@@ -21,17 +22,25 @@
     "@nextui-org/switch": "2.2.3",
     "@nextui-org/system": "2.4.3",
     "@nextui-org/theme": "2.4.1",
+    "@radix-ui/react-toast": "^1.2.4",
     "@react-aria/ssr": "3.9.7",
     "@react-aria/visually-hidden": "3.8.18",
-    "clsx": "2.1.1",
+    "axios": "^1.7.9",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "11.13.1",
     "intl-messageformat": "^10.5.0",
+    "lucide-react": "^0.468.0",
     "next": "15.0.4",
     "next-themes": "^0.4.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-hook-form": "^7.54.1",
     "recharts": "^2.15.0",
-    "usehooks-ts": "^3.1.0"
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^3.1.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@iconify/react": "^5.1.0",
