@@ -1,0 +1,39 @@
+services:
+  backend:
+    image: ajaytemplar/book-appointments-with-doctors-backend:latest
+    ports:
+      - "80:3000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/db
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/usr/src/app/backend
+      - /usr/src/app/backend/node_modules
+    restart: always
+
+  frontend:
+    image: ajaytemplar/book-appointments-with-doctors-frontend:latest
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - BACKEND_URL=http://localhost:80
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/src/app/frontend
+      - /usr/src/app/frontend/node_modules
+    restart: always
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+volumes:
+  mongo-data:
