@@ -91,6 +91,7 @@ export default function LayoutComponent({ children }: { children: any }) {
                       (isCollapsed || isMobile) && !isOpen,
                   }
                 )}
+                color="#a7a7a7"
                 icon="solar:round-alt-arrow-left-line-duotone"
                 width={24}
                 onClick={isMobile && isCollapsed ? onOpenChange : onToggle}
@@ -136,7 +137,7 @@ export default function LayoutComponent({ children }: { children: any }) {
                 startContent={
                   isCollapsed && !isOpen ? null : (
                     <Icon
-                      className="flex-none text-default-600"
+                      className="flex-none"
                       icon="solar:info-circle-line-duotone"
                       width={24}
                     />
