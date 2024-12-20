@@ -58,4 +58,4 @@ EXPOSE 4000
 ENV PORT=4000
 
 # Run the application using npm
-CMD ["npm", "start"]
+CMD ["npm", "start:prod"]
