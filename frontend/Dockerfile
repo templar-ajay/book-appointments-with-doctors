@@ -13,9 +13,8 @@ WORKDIR /usr/src/app/frontend
 COPY --from=deps /usr/src/app/frontend/node_modules ./node_modules
 COPY . .
 
-ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
-ENV BACKEND_URL=http://localhost:80
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # Build the Next.js application
 RUN npm run build
@@ -23,9 +22,6 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /usr/src/app/frontend
 
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV BACKEND_URL="http://localhost:80"
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

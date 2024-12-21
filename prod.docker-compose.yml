@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ajaytemplar/book-appointments-with-doctors-backend:1.0
+    image: ajaytemplar/assessment-backend:amd64
     ports:
       - "80:3000"
     environment:
@@ -13,12 +13,12 @@ services:
       - app-network
 
   frontend:
-    image: ajaytemplar/book-appointments-with-doctors-frontend:latest
+    image: ajaytemplar/assessment-frontend:amd64
     ports:
       - "4000:4000"
     environment:
       - NODE_ENV=production
-      - BACKEND_URL=http://0.0.0.0:80
+      - BACKEND_URL=http://app-network:3000
     depends_on:
       - backend
     restart: always
