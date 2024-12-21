@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ajaytemplar/book-appointments-with-doctors-backend:latest
+    image: ajaytemplar/book-appointments-with-doctors-backend:1.0
     ports:
       - "80:3000"
     environment:
@@ -9,6 +9,8 @@ services:
     depends_on:
       - mongo
     restart: always
+    networks:
+      - app-network
 
   frontend:
     image: ajaytemplar/book-appointments-with-doctors-frontend:latest
@@ -16,10 +18,12 @@ services:
       - "4000:4000"
     environment:
       - NODE_ENV=production
-      - BACKEND_URL=http://localhost:80
+      - BACKEND_URL=http://0.0.0.0:80
     depends_on:
       - backend
     restart: always
+    networks:
+      - app-network
 
   mongo:
     image: mongo:latest
@@ -28,6 +32,12 @@ services:
     volumes:
       - mongo-data:/data/db
     restart: always
+    networks:
+      - app-network
 
 volumes:
   mongo-data:
+
+networks:
+  app-network:
+    driver: bridge
